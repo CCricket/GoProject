@@ -62,12 +62,14 @@ func result(done chan bool) {
 		fmt.Printf("Job id %d,iinput random no %d, sum of digits %d \n", result.job.id, result.job.randomno, result.sumofdigits)
 	}
 	done <- true
-}golang 2019下载
+}
+func main() {
+	startTime := time.Now()
 	noOfJobs := 100
 	go allocate(noOfJobs)
 	done := make(chan bool)
 	go result(done)
-	noOfWorkers := 10
+	noOfWorkers := 50
 	createWorkerPool(noOfWorkers)
 	<-done
 	endTime := time.Now()
